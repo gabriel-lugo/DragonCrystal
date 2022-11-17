@@ -1,33 +1,29 @@
 window.addEventListener('DOMContentLoaded', main);
 
+
 function main() {
 
     // getPlayerName;
+    setupGame();
     loadFrozenLakeScene();
 
 }
 
+function setupGame() {
 
-// -----SCENES-----
-function loadStartScene() {
 
 }
 
+// -----SCENES-----
+
 function loadFrozenLakeScene() {
-    const lookText = document.getElementById('look-text');
-    lookText.innerHTML = "";
-
     const text = document.getElementById('world-text');
-
+    const lookText = document.getElementById('look-text');
     const north = document.getElementById('north');
     const south = document.getElementById('south');
     const west = document.getElementById('west');
     const east = document.getElementById('east');
-
     const look = document.getElementById('look-around');
-
-
-
     text.textContent = "You are standing by the Frozen Lake.";
     north.addEventListener('click', loadSolemnVillageScene);
     south.addEventListener('click', loadFrozenLakeScene);
@@ -120,7 +116,7 @@ function lookingAroundFrozenLake() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see a Wizard.";
+    lookText.textContent = "There is a WIZARD sitting on a stone by the lake.";
 
 }
 
@@ -143,7 +139,7 @@ function lookingAroundCaveOfMagic() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see a TROLL guarding the entrance.";
+    lookText.textContent = "You see a TROLL guarding the cave.";
 }
 
 function lookingAroundDragonCastle() {
