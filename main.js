@@ -1,9 +1,13 @@
 window.addEventListener('DOMContentLoaded', main);
 
 function main() {
-    getPlayerName;
+
+    // getPlayerName;
+    loadFrozenLakeScene();
 
 }
+
+
 
 function getPlayerName() {
     const playerName = "random";
@@ -16,22 +20,60 @@ function loadStartScene() {
 }
 
 function loadFrozenLakeScene() {
+    const text = document.getElementById('world-text');
+    const north = document.getElementById('north');
+    const south = document.getElementById('south');
+    const east = document.getElementById('east');
+    const west = document.getElementById('west');
+    text.textContent = "You are standing by the Frozen Lake. You see a Wizard.";
+    north.addEventListener('click', loadSolemnVillageScene);
 
 }
 
 function loadSolemnVillageScene() {
+    const text = document.getElementById('world-text');
+    const north = document.getElementById('north');
+    const south = document.getElementById('south');
+    const east = document.getElementById('east');
+    const west = document.getElementById('west');
+    text.textContent = "You are in the Solemn Village.";
+    north.addEventListener('click', loadEnchantedForestScene);
+    south.addEventListener('click', loadFrozenLakeScene);
 
 }
 
 function loadEnchantedForestScene() {
+    const text = document.getElementById('world-text');
+    const north = document.getElementById('north');
+    const south = document.getElementById('south');
+    const east = document.getElementById('east');
+    const west = document.getElementById('west');
+    text.textContent = "You are in the Enchanted Forest";
+    north.addEventListener('click', loadDragonCastleScene);
+    south.addEventListener('click', loadSolemnVillageScene);
+    west.addEventListener('click', loadCaveOfMagicScene);
 
 }
 
 function loadCaveOfMagicScene() {
+    const text = document.getElementById('world-text');
+    const north = document.getElementById('north');
+    const south = document.getElementById('south');
+    const east = document.getElementById('east');
+    const west = document.getElementById('west');
+    text.textContent = "You are in the Cave of Magic";
+    east.addEventListener('click', loadEnchantedForestScene);
 
 }
 
 function loadDragonCastleScene() {
+    const text = document.getElementById('world-text');
+    const north = document.getElementById('north');
+    const south = document.getElementById('south');
+    const east = document.getElementById('east');
+    const west = document.getElementById('west');
+    text.textContent = "You are outside the DragonCastle";
+    south.addEventListener('click', loadEnchantedForestScene);
 
 }
 
