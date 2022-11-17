@@ -1,5 +1,42 @@
 window.addEventListener('DOMContentLoaded', main);
 
+function main() {
+    getPlayerName;
+
+}
+
+function getPlayerName() {
+    const playerName = "random";
+}
+
+
+// -----SCENES-----
+function loadStartScene() {
+
+}
+
+function loadFrozenLakeScene() {
+
+}
+
+function loadSolemnVillageScene() {
+
+}
+
+function loadEnchantedForestScene() {
+
+}
+
+function loadCaveOfMagicScene() {
+
+}
+
+function loadDragonCastleScene() {
+
+}
+
+
+
 // -----SCENER ATT SKAPA-----
 // DRAGONCASTLE
 // FROZEN LAKE

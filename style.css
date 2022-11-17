@@ -1,15 +1,20 @@
 * {
+    margin: 0;
     background-color: darkslategray;
     color: white;
 }
 
 header {
+    height: 4rem;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 h1 {
     font-family: 'UnifrakturMaguntia', cursive;
+    letter-spacing: 10px;
+
     /* font-size: 4rem; */
 }
 
@@ -24,4 +29,19 @@ h1 {
 #world-area {
     font-family: 'Silkscreen', cursive;
     text-align: center;
+}
+
+#world-text {
+    background-color: rgb(24, 40, 40);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    font-family: 'Silkscreen', cursive;
+    color: white;
+    background-color:rgb(33, 56, 56);
+
 }
