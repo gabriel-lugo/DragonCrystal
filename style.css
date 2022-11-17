@@ -3,9 +3,13 @@
     color: white;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+}
+
 h1 {
     font-family: 'UnifrakturMaguntia', cursive;
-    text-align: center;
     /* font-size: 4rem; */
 }
 
@@ -20,5 +24,4 @@ h1 {
 #world-area {
     font-family: 'Silkscreen', cursive;
     text-align: center;
-
 }
