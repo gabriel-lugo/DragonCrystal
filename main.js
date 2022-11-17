@@ -16,7 +16,7 @@ let inventory;
 /** Startar programmet */
 function main() {
     loadHtmlElements();
-    loadFrozenLakeScene();
+    startup();
 }
 
 function loadHtmlElements() {
@@ -26,7 +26,7 @@ function loadHtmlElements() {
     south = document.getElementById('south');
     west = document.getElementById('west');
     east = document.getElementById('east');
-    look = document.getElementById('look-around');
+    look = document.getElementById('look');
     talk = document.getElementById('talk');
     useOrTake = document.getElementById('use-take');
     inventory = document.getElementById('inventory');
@@ -35,13 +35,13 @@ function loadHtmlElements() {
 // -----SCENES-----
 function startup() {
 
-    text.textContent = "Welcome brave adventurer! Please enter your name:";
-    actionText.innerHTML = "";
-    north.onclick = loadSolemnVillageScene;
+    text.textContent = "Welcome to the world of Imaginaria! Your goal is to get the DragonCrystal and use it to save the world.";
+    actionText.innerHTML = "Good luck...";
+    north.onclick = loadFrozenLakeScene;
     south.onclick = loadFrozenLakeScene;
-    west.onclick = loadNarrowPath;
+    west.onclick = loadFrozenLakeScene;
     east.onclick = loadFrozenLakeScene;
-    look.onclick = lookingAroundFrozenLake;
+    look.onclick = loadFrozenLakeScene;
 }
 
 
@@ -62,7 +62,7 @@ function loadNarrowPath() {
     south.onclick = loadNarrowPath;
     west.onclick = loadNarrowPath;
     east.onclick = loadFrozenLakeScene;
-    look.onclick = lookingAroundFrozenLake;
+    look.onclick = lookingAroundNarrowPath;
 }
 
 
@@ -111,6 +111,12 @@ function lookingAroundFrozenLake() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a WIZARD here...";
     talk.onclick = talkToWizard;
+}
+
+function lookingAroundNarrowPath() {
+    actionText.innerHTML = "";
+    actionText.textContent = "This is a dark and dangerous path..."
+    talk.onclick = "";
 }
 
 function lookingAroundSolemnVillage() {
