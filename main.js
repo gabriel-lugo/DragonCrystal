@@ -3,16 +3,9 @@ window.addEventListener('DOMContentLoaded', main);
 
 function main() {
 
-    // getPlayerName;
-    setupGame();
     loadFrozenLakeScene();
-
 }
 
-function setupGame() {
-
-
-}
 
 // -----SCENES-----
 
@@ -24,7 +17,9 @@ function loadFrozenLakeScene() {
     const west = document.getElementById('west');
     const east = document.getElementById('east');
     const look = document.getElementById('look-around');
+
     text.textContent = "You are standing by the Frozen Lake.";
+    lookText.innerHTML = "";
     north.addEventListener('click', loadSolemnVillageScene);
     south.addEventListener('click', loadFrozenLakeScene);
     west.addEventListener('click', loadFrozenLakeScene);
@@ -33,18 +28,16 @@ function loadFrozenLakeScene() {
 }
 
 function loadSolemnVillageScene() {
-    const lookText = document.getElementById('look-text');
-    lookText.innerHTML = "";
     const text = document.getElementById('world-text');
+    const lookText = document.getElementById('look-text');
     const north = document.getElementById('north');
     const south = document.getElementById('south');
     const west = document.getElementById('west');
     const east = document.getElementById('east');
-
     const look = document.getElementById('look-around');
 
-
     text.textContent = "You are in the Solemn Village.";
+    lookText.innerHTML = "";
     north.addEventListener('click', loadEnchantedForestScene);
     south.addEventListener('click', loadFrozenLakeScene);
     west.addEventListener('click', loadSolemnVillageScene);
@@ -53,18 +46,16 @@ function loadSolemnVillageScene() {
 }
 
 function loadEnchantedForestScene() {
-    const lookText = document.getElementById('look-text');
-    lookText.innerHTML = "";
     const text = document.getElementById('world-text');
+    const lookText = document.getElementById('look-text');
     const north = document.getElementById('north');
     const south = document.getElementById('south');
     const west = document.getElementById('west');
     const east = document.getElementById('east');
-
     const look = document.getElementById('look-around');
 
-
     text.textContent = "You are in the Enchanted Forest";
+    lookText.innerHTML = "";
     north.addEventListener('click', loadDragonCastleScene);
     south.addEventListener('click', loadSolemnVillageScene);
     west.addEventListener('click', loadCaveOfMagicScene);
@@ -73,18 +64,17 @@ function loadEnchantedForestScene() {
 }
 
 function loadCaveOfMagicScene() {
-    const lookText = document.getElementById('look-text');
-    lookText.innerHTML = "";
     const text = document.getElementById('world-text');
+    const lookText = document.getElementById('look-text');
     const north = document.getElementById('north');
     const south = document.getElementById('south');
     const west = document.getElementById('west');
     const east = document.getElementById('east');
-
     const look = document.getElementById('look-around');
 
 
     text.textContent = "You are in the Cave of Magic";
+    lookText.innerHTML = "";
     north.addEventListener('click', loadCaveOfMagicScene);
     south.addEventListener('click', loadCaveOfMagicScene);
     west.addEventListener('click', loadCaveOfMagicScene);
@@ -93,17 +83,16 @@ function loadCaveOfMagicScene() {
 }
 
 function loadDragonCastleScene() {
-    const lookText = document.getElementById('look-text');
-    lookText.innerHTML = "";
     const text = document.getElementById('world-text');
+    const lookText = document.getElementById('look-text');
     const north = document.getElementById('north');
     const south = document.getElementById('south');
     const west = document.getElementById('west');
     const east = document.getElementById('east');
-
     const look = document.getElementById('look-around');
 
     text.textContent = "You are outside the DragonCastle";
+    lookText.innerHTML = "";
     north.addEventListener('click', loadDragonCastleScene);
     south.addEventListener('click', loadEnchantedForestScene);
     west.addEventListener('click', loadDragonCastleScene);
@@ -116,7 +105,7 @@ function lookingAroundFrozenLake() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "There is a WIZARD sitting on a stone by the lake.";
+    lookText.textContent = "There is a WIZARD here...";
 
 }
 
@@ -124,7 +113,7 @@ function lookingAroundSolemnVillage() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see a Blacksmith and a Merchant.";
+    lookText.textContent = "There is a BLACKSMITH here...";
 
 }
 
@@ -132,21 +121,21 @@ function lookingAroundEnchantedForest() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see some animals."
+    lookText.textContent = "There are some birds in the trees..."
 }
 
 function lookingAroundCaveOfMagic() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see a TROLL guarding the cave.";
+    lookText.textContent = "There is a book on the ground...";
 }
 
 function lookingAroundDragonCastle() {
     const lookText = document.getElementById('look-text');
     lookText.innerHTML = "";
 
-    lookText.textContent = "You see two ORCHS guarding the entrance.";
+    lookText.textContent = "There are two ORCHS guarding the entrance...";
 }
 
 
@@ -167,8 +156,6 @@ function lookingAroundDragonCastle() {
 // -----KARAKTÄRER ATT SKAPA-----
 // WIZARD
 // BLACKSMITH
-// MERCHANT
-// TROLL
 
 // -----FIENDER ATT SKAPA-----
 // Dragon
