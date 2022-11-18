@@ -13,10 +13,18 @@ let talk;
 let useOrTake;
 let inventory;
 
+let spellBook;
+let invisibilityCloak;
+let dragonCrystal;
+
 /** Startar programmet */
 function main() {
     loadHtmlElements();
+    loadItems();
     startup();
+    console.log("spellbook"+":"+spellBook);
+    console.log("invisibilitycloak"+":"+invisibilityCloak);
+    console.log("dragoncrystal" + ":" + dragonCrystal);
 }
 
 function loadHtmlElements() {
@@ -32,16 +40,24 @@ function loadHtmlElements() {
     inventory = document.getElementById('inventory');
 }
 
+function loadItems() {
+    spellBook = false;
+    invisibilityCloak = false;
+    dragonCrystal = false;
+}
+
 // -----SCENES-----
 function startup() {
 
-    text.textContent = "Welcome to the world of Imaginaria! Your goal is to get the DragonCrystal and use it to save the world.";
-    actionText.innerHTML = "Good luck...";
+    text.textContent = "Welcome to the world of Imaginaria!";
+    actionText.innerHTML = "Press any button";
     north.onclick = loadFrozenLakeScene;
     south.onclick = loadFrozenLakeScene;
     west.onclick = loadFrozenLakeScene;
     east.onclick = loadFrozenLakeScene;
     look.onclick = loadFrozenLakeScene;
+    useOrTake.onclick = loadFrozenLakeScene;
+    inventory.onclick = loadFrozenLakeScene;
 }
 
 
@@ -53,6 +69,8 @@ function loadFrozenLakeScene() {
     west.onclick = loadNarrowPath;
     east.onclick = loadFrozenLakeScene;
     look.onclick = lookingAroundFrozenLake;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function loadNarrowPath() {
@@ -63,6 +81,8 @@ function loadNarrowPath() {
     west.onclick = loadNarrowPath;
     east.onclick = loadFrozenLakeScene;
     look.onclick = lookingAroundNarrowPath;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 
@@ -74,6 +94,8 @@ function loadSolemnVillageScene() {
     west.onclick = loadSolemnVillageScene;
     east.onclick = loadSolemnVillageScene;
     look.onclick = lookingAroundSolemnVillage;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function loadEnchantedForestScene() {
@@ -83,17 +105,20 @@ function loadEnchantedForestScene() {
     south.onclick = loadSolemnVillageScene;
     west.onclick = loadCaveOfMagicScene;
     east.onclick = loadEnchantedForestScene;
-    look.onclick = lookingAroundEnchantedForest;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function loadCaveOfMagicScene() {
     text.textContent = "You are in the Cave of Magic.";
     actionText.innerHTML = "";
     north.onclick = loadCaveOfMagicScene;
-    south.onclick = loadCaveOfMagicScene;
+    south.onclick = loadNarrowPath;
     west.onclick = loadCaveOfMagicScene;
     east.onclick = loadEnchantedForestScene;
     look.onclick = lookingAroundCaveOfMagic;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function loadDragonCastleScene() {
@@ -104,6 +129,8 @@ function loadDragonCastleScene() {
     west.onclick = loadDragonCastleScene;
     east.onclick = loadDragonCastleScene;
     look.onclick = lookingAroundDragonCastle;
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 // -----LOOKING AROUND-----
@@ -111,46 +138,67 @@ function lookingAroundFrozenLake() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a WIZARD here...";
     talk.onclick = talkToWizard;
+    useOrTake.onclick = "";
 }
 
 function lookingAroundNarrowPath() {
     actionText.innerHTML = "";
     actionText.textContent = "This is a dark and dangerous path..."
     talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function lookingAroundSolemnVillage() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a BLACKSMITH here...";
     talk.onclick = talkToBlacksmith;
+    useOrTake.onclick = "";
 }
 
 function lookingAroundEnchantedForest() {
     actionText.innerHTML = "";
     actionText.textContent = "There are some birds in the trees..."
+    talk.onclick = "";
+    useOrTake.onclick = "";
 }
 
 function lookingAroundCaveOfMagic() {
     actionText.innerHTML = "";
-    actionText.textContent = "There is a book on the ground...";
-    useOrTake.onclick = pickUpMagicBook;
+
+    if(spellBook == false) {
+        actionText.textContent = "There is a book on the ground...";
+        talk.onclick = "";
+        useOrTake.onclick = pickUpMagicBook;
+    } else {
+        actionText.textContent = "There is nothing here...";
+        useOrTake.onclick = "";
+    }
 }
 
 function lookingAroundDragonCastle() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a ORC guarding the entrance...";
     talk.onclick = talkToOrc;
+    useOrTake.onclick = "";
 }
 
 // -----TALK-----
 function talkToWizard() {
     actionText.innerHTML = "";
-    actionText.textContent = "WIZARD: I have lost my SPELL BOOK..."
+
+    if(spellBook == true) {
+        actionText.textContent = "WIZARD: I have lost my SPELL BOOK..."
+        useOrTake.onclick = giveSpellBookToWizard;
+    } else {
+        actionText.textContent = "WIZARD: I have lost my SPELL BOOK..."
+        useOrTake.onclick = "";
+    }
 }
 
 function talkToBlacksmith() {
     actionText.innerHTML = "";
     actionText.textContent = "BLACKSMITH: If I had the DRAGONCRYSTAL I could forge a sword mightier than anything..."
+    useOrTake.onclick = "";
 }
 
 function talkToOrc() {
@@ -161,13 +209,31 @@ function talkToOrc() {
     west.onclick = gameOver;
     east.onclick = gameOver;
     look.onclick = gameOver;
+    talk.onclick = gameOver;
+    useOrTake.onclick = gameOver;
 }
 
 
 // -----USE/TAKE-----
 function pickUpMagicBook() {
+    actionText.innerHTML = "";
+    actionText.textContent = "You picked up the SPELL BOOK";
+    spellBook = true;
+    console.log("spellbook"+":"+spellBook);
+   
+}
 
+function giveSpellBookToWizard() {
+    actionText.innerHTML = "";
+    actionText.textContent = "You give SPELL BOOK to WIZARD";
+    setTimeout(getInvisibilityCloak, 1000);
+}
 
+function getInvisibilityCloak() {
+    invisibilityCloak = true;
+    console.log("invisibilitycloak"+":"+invisibilityCloak);
+    actionText.innerHTML= "";
+    actionText.textContent = "You recieve INVISIBILITY CLOAK."
 }
 
 function gameOver() {
@@ -178,4 +244,6 @@ function gameOver() {
     west.onclick = gameOver;
     east.onclick = gameOver;
     look.onclick = gameOver;
+    talk.onclick = gameOver;
+    useOrTake.onclick = gameOver;
 }
