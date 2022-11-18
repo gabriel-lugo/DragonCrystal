@@ -46,8 +46,8 @@ h1 {
 button {
     font-family: 'Silkscreen', cursive;
     color: white;
-    padding: 7px;
-    margin: 2px;
+    padding: 8px;
+    margin: 8px;
     border-radius: 10px;
     background-color:rgb(33, 56, 56);
     cursor: pointer;
