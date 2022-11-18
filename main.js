@@ -11,7 +11,7 @@ let east;
 let look;
 let talk;
 let useOrTake;
-let inventory;
+// let inventory;
 
 let spellBook;
 let invisibilityCloak;
