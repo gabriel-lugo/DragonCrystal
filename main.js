@@ -11,7 +11,6 @@ let east;
 let look;
 let talk;
 let useOrTake;
-// let inventory;
 
 /** Föremål som används i spelet */
 let spellBook;
@@ -66,7 +65,6 @@ function startup() {
     east.onclick = loadFrozenLakeScene;
     look.onclick = loadFrozenLakeScene;
     useOrTake.onclick = loadFrozenLakeScene;
-    // inventory.onclick = loadFrozenLakeScene;
 }
 
 /** FrozenLake-scenen */
@@ -121,7 +119,7 @@ function loadEnchantedForestScene() {
     useOrTake.onclick = nothingToUse;
 }
 
-
+/** CaveOfMagic-scenen */
 function loadCaveOfMagicScene() {
     text.textContent = "You are in the Cave of Magic";
     actionText.innerHTML = "";
@@ -134,6 +132,7 @@ function loadCaveOfMagicScene() {
     useOrTake.onclick = nothingToUse;
 }
 
+/** DragonCastle-scenen utanför */
 function loadDragonCastleScene() {
     text.textContent = "You are outside the DragonCastle";
     actionText.innerHTML = "";
@@ -146,6 +145,7 @@ function loadDragonCastleScene() {
     useOrTake.onclick = nothingToUse;
 }
 
+/** DragonCastle-scenen innanför */
 function loadInsideDragonCastleScene() {
     text.textContent = "You are inside the DragonCastle";
     actionText.innerHTML = "";
@@ -160,6 +160,8 @@ function loadInsideDragonCastleScene() {
 
 
 // -----LOOKING AROUND-----
+
+/** Look-kommandot i FrozenLake */
 function lookingAroundFrozenLake() {
     actionText.innerHTML = "";
 
@@ -168,18 +170,19 @@ function lookingAroundFrozenLake() {
     talk.onclick = talkToWizard;
     useOrTake.onclick = nothingToUse;
 
-    if(spellBook == true) {
-        useOrTake.onclick = giveSpellBookToWizard;
-    } else {
-        useOrTake.onclick = nothingToUse;
-    }
-    }else{
+        if(spellBook == true) {
+            useOrTake.onclick = giveSpellBookToWizard;
+        } else {
+            useOrTake.onclick = nothingToUse;
+        }
+    } else{
         actionText.textContent = "There is a HAPPY WIZARD here";
         talk.onclick = talkToHappyWizard;
         useOrTake.onclick = nothingToUse;
     }
 }
 
+/** Look-kommandot i NarrowPath */
 function lookingAroundNarrowPath() {
     actionText.innerHTML = "";
     actionText.textContent = "This is a dark and dangerous path"
@@ -187,6 +190,7 @@ function lookingAroundNarrowPath() {
     useOrTake.onclick = "";
 }
 
+/** Look-kommandot i SolemnVillage */
 function lookingAroundSolemnVillage() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a BLACKSMITH here";
@@ -194,6 +198,7 @@ function lookingAroundSolemnVillage() {
     useOrTake.onclick = "";
 }
 
+/** Look-kommandot i EnchantedForest */
 function lookingAroundEnchantedForest() {
     actionText.innerHTML = "";
     actionText.textContent = "There are some birds in the trees"
@@ -201,6 +206,7 @@ function lookingAroundEnchantedForest() {
     useOrTake.onclick = nothingToUse;
 }
 
+/** Look-kommandot i CaveOfMagic */
 function lookingAroundCaveOfMagic() {
     actionText.innerHTML = "";
 
@@ -214,6 +220,7 @@ function lookingAroundCaveOfMagic() {
     }
 }
 
+/** Look-kommandot utanför DragonCastle */
 function lookingAroundDragonCastle() {
     actionText.innerHTML = "";
     actionText.textContent = "There is an ORC guarding the entrance";
@@ -226,6 +233,7 @@ function lookingAroundDragonCastle() {
     }
 }
 
+/** Look-kommandot i DragonCastle */
 function lookingAroundInsideDragonCastle() {
     actionText.innerHTML = "";
     actionText.textContent = "The DRAGONCRYSTAL is glowing bright";
@@ -233,6 +241,7 @@ function lookingAroundInsideDragonCastle() {
 }
 
 // -----TALK-----
+
 function talkToWizard() {
     actionText.innerHTML = "";
 
@@ -249,7 +258,7 @@ function talkToWizardAgain() {
     actionText.textContent = "WIZARD: Thank you for finding my SPELL BOOK! Please take this INVISIBILITY CLOAK!";
     sadWizard = false;
     console.log("sad wizard"+":"+sadWizard);
-    setTimeout(getInvisibilityCloak, 4000);
+    setTimeout(getInvisibilityCloak, 3500);
 }
 
 function talkToHappyWizard() {
@@ -285,6 +294,7 @@ function nothingToUse() {
     useOrTake.onclick = "";
 
 }
+
 function pickUpMagicBook() {
     actionText.innerHTML = "";
     actionText.textContent = "You picked up the SPELL BOOK";
@@ -303,7 +313,7 @@ function giveSpellBookToWizard() {
     useOrTake.onclick = "";
     actionText.innerHTML = "";
     actionText.textContent = "You give SPELL BOOK to WIZARD";
-    setTimeout(talkToWizardAgain, 2000);
+    setTimeout(talkToWizardAgain, 1500);
     useOrTake.onclick = "";
 }
 
@@ -338,7 +348,7 @@ function useInvisibilityCloak() {
 
 function endGame() {
     text.textContent = "Congratulations! You found the DragonCrystal"
-    actionText.textContent = "This is the end of Chapter I"
+    actionText.textContent = "This is the end of Chapter 1"
 }
 
 function gameOver() {
