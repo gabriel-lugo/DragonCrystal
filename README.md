@@ -1,7 +1,9 @@
 # DragonCrystal
 
-En textbaserad interaktiv upplevelse.
+En textbaserad interaktiv upplevelse. Här får användaren utforska världen Imaginaria och leta efter DragonCrystal.
 
-[Här hittar du demon](https://gabriel-lugo.github.io/DragonCrystal/)
+Jag har utgått ifrån att DragonCrystal i första hand kommer spelas i mobilen.
+
+[Här hittar du demon.](https://gabriel-lugo.github.io/DragonCrystal/)
 
 ---

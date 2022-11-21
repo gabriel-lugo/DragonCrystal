@@ -17,9 +17,23 @@ h1 {
     letter-spacing: 10px;
 }
 
+button {
+    font-family: 'Silkscreen', cursive;
+    color: white;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 10px;
+    background-color:rgb(33, 56, 56);
+    cursor: pointer;
+}
+
 .game {
     display: flex;
     justify-content: center;
+}
+
+.button-instruction {
+    margin: 10px;
 }
 
 #world-area {
@@ -33,7 +47,6 @@ h1 {
 }
 
 #text-area {
-    /* background-color: rgb(24, 40, 40); */
     background-color: black;
     height: 250px;
     width: 100%;
@@ -47,30 +60,14 @@ h1 {
     margin: 10px;
 }
 
-.button-instruction {
-    margin: 10px;
-}
-
-button {
-    font-family: 'Silkscreen', cursive;
-    color: white;
-    padding: 8px;
-    margin: 8px;
-    border-radius: 10px;
-    background-color:rgb(33, 56, 56);
-    cursor: pointer;
-}
-
 @media only screen and (max-width: 1024px) {
     #world-area {
         width: 80%;
     }
-
 }
 
 @media only screen and (max-width: 768px) {
     #world-area {
         width: 100%;
     }
-    
 }

@@ -1,26 +1,28 @@
 window.addEventListener('DOMContentLoaded', main);
 
 //-----HTML-ELEMENTS-----
+
 /** @type{HtmlElement} - Html-Element used for text. */
 let text;
 /** @type{HtmlElement} - Html-Element used for action-text. */
 let actionText;
-/** @type{Button} - Button used for north-navigation. */
+/** @type{HTMLElement} - Button for north-navigation. */
 let north;
-/** @type{Button} - Button used for south-navigation. */
+/** @type{HTMLElement} - Button for south-navigation. */
 let south;
-/** @type{Button} - Button used for west-navigation. */
+/** @type{HTMLElement} - Button for west-navigation. */
 let west;
-/** @type{Button} - Button used for east-navigation. */
+/** @type{HTMLElement} - Button for east-navigation. */
 let east;
-/** @type{Button} - Button used for looking around in scenes. */
+/** @type{HTMLElement} - Button for looking around in scenes. */
 let look;
-/** @type{Button} - Button used for talking in the scenes. */
+/** @type{HTMLElement} - Button for talking in the scenes. */
 let talk;
-/** @type{Button} - Button used for using or taking items. */
+/** @type{HTMLElement} - Button for using or taking items. */
 let useOrTake;
 
 //-----ITEMS-----
+
 /** @type{Boolean} - SPELLBOOK-item */
 let spellBook;
 /** @type{Boolean} - INVISIBILITYCLOAK-item */
@@ -29,18 +31,17 @@ let invisibilityCloak;
 let dragonCrystal;
 
 //-----CHARACTERS-----
+
 /** @type{Boolean} - WIZARD-character */
 let sadWizard;
+
+//-----STARTUP-----
 
 /** Start of the program. */
 function main() {
     loadHtmlElements();
     loadItems();
     startup();
-    console.log("spellbook"+":"+spellBook);
-    console.log("invisibilitycloak"+":"+invisibilityCloak);
-    console.log("dragoncrystal" + ":" + dragonCrystal);
-    console.log("sad wizard"+":"+sadWizard);
 }
 
 /** Loading HTML-elements. */
@@ -172,25 +173,25 @@ function loadInsideDragonCastleScene() {
 }
 
 // -----DIRECTIONS----
-/** Function used when player cannot go in that direction. */
+/** Used when player cannot go north. */
 function cannotGoNorth() {
     actionText.innerHTML = "";
     actionText.textContent = "Cannot go NORTH from here";
 }
 
-/** Function used when player cannot go in that direction. */
+/** Used when player cannot go south. */
 function cannotGoSouth() {
     actionText.innerHTML = "";
     actionText.textContent = "Cannot go SOUTH from here";
 }
 
-/** Function used when player cannot go in that direction. */
+/** Used when player cannot go west. */
 function cannotGoWest() {
     actionText.innerHTML = "";
     actionText.textContent = "Cannot go WEST from here";
 }
 
-/** Function used when player cannot go in that direction. */
+/** Used when player cannot go east. */
 function cannotGoEast() {
     actionText.innerHTML = "";
     actionText.textContent = "Cannot go EAST from here";
@@ -198,7 +199,7 @@ function cannotGoEast() {
 
 // -----LOOKING AROUND-----
 
-/** Function for looking around FROZENLAKE scene.
+/** For looking around FROZENLAKE scene.
  * You can talk to the WIZARD here.
  * If you have the SPELLBOOK you can give it to the WIZARD.  */
 function lookingAroundFrozenLake() {
@@ -221,7 +222,7 @@ function lookingAroundFrozenLake() {
     }
 }
 
-/** Function for looking around NARROWPATH scene. */
+/** For looking around NARROWPATH scene. */
 function lookingAroundNarrowPath() {
     actionText.innerHTML = "";
     actionText.textContent = "This is a dark and dangerous path"
@@ -229,7 +230,7 @@ function lookingAroundNarrowPath() {
     useOrTake.onclick = nothingToUse;
 }
 
-/** Function for looking around SOLEMNVILLAGE scene.
+/** For looking around SOLEMNVILLAGE scene.
  * You can talk to the BLACKSMITH here.
  */
 function lookingAroundSolemnVillage() {
@@ -239,7 +240,7 @@ function lookingAroundSolemnVillage() {
     useOrTake.onclick = nothingToUse;
 }
 
-/** Function for looking around ENCHANTEDFOREST scene. */
+/** For looking around ENCHANTEDFOREST scene. */
 function lookingAroundEnchantedForest() {
     actionText.innerHTML = "";
     actionText.textContent = "There are some birds in the trees"
@@ -247,7 +248,7 @@ function lookingAroundEnchantedForest() {
     useOrTake.onclick = nothingToUse;
 }
 
-/** Function for looking around CAVEOFMAGIC scene.
+/** Used for looking around CAVEOFMAGIC scene.
  * You can pick up the SPELLBOOK here. */
 function lookingAroundCaveOfMagic() {
     actionText.innerHTML = "";
@@ -262,7 +263,7 @@ function lookingAroundCaveOfMagic() {
     }
 }
 
-/** Function for looking around OUTSIDEDRAGONCASTLE scene. 
+/** Used for looking around OUTSIDEDRAGONCASTLE scene. 
  * You can talk to the ORC.
  * If you have the INVISIBILITYCLOAK you can use that here. */
 function lookingAroundOutsideDragonCastle() {
@@ -277,7 +278,7 @@ function lookingAroundOutsideDragonCastle() {
     }
 }
 
-/** Function for looking around INSIDEDRAGONCASTLE scene.
+/** Used for looking around INSIDEDRAGONCASTLE scene.
  * You can pick up the DRAGONCRYSTAL here.
  */
 function lookingAroundInsideDragonCastle() {
@@ -288,11 +289,10 @@ function lookingAroundInsideDragonCastle() {
 
 // -----TALK-----
 
-/** Function for when there is nobody to talk to. */
+/** Used when there is nobody to talk to. */
 function nobodyToTalkTo() {
     actionText.innerHTML = "";
     actionText.textContent = "Nobody to talk to"
-
 }
 
 /** First conversation with the WIZARD at FROZENLAKE. 
@@ -316,7 +316,6 @@ function talkToWizard() {
 function talkToWizardAgain() {
     actionText.textContent = "WIZARD: Thank you for finding my SPELL BOOK! Please take this INVISIBILITY CLOAK!";
     sadWizard = false;
-    console.log("sad wizard"+":"+sadWizard);
     setTimeout(getInvisibilityCloak, 3500);
 }
 
@@ -351,24 +350,22 @@ function talkToOrc() {
 
 
 // -----USE/TAKE-----
-/** Function for when there is nothing to use in the scene. */
+
+/** When there is nothing to use in the scene. */
 function nothingToUse() {
     actionText.innerHTML = "";
     actionText.textContent = "Nothing to use"
     useOrTake.onclick = "";
-
 }
 
-/** Function for picking up SPELLBOOK in CAVEOFMAGIC scene. */
+/** Picks up SPELLBOOK in CAVEOFMAGIC scene. */
 function pickUpSpellBook() {
     actionText.innerHTML = "";
     actionText.textContent = "You picked up the SPELL BOOK";
-    spellBook = true;
-    console.log("spellbook"+":"+spellBook);
-   
+    spellBook = true;  
 }
 
-/** Function for giving SPELLBOOK to WIZARD. */
+/** Gives SPELLBOOK to WIZARD. */
 function giveSpellBookToWizard() {
     north.onclick = "";
     south.onclick = "";
@@ -383,7 +380,7 @@ function giveSpellBookToWizard() {
     useOrTake.onclick = "";
 }
 
-/** Function for getting INVISIBILITYCLOAK from WIZARD. */
+/** Gets INVISIBILITYCLOAK from WIZARD. */
 function getInvisibilityCloak() {
     north.onclick = loadSolemnVillageScene;
     south.onclick = loadFrozenLakeScene;
@@ -393,12 +390,11 @@ function getInvisibilityCloak() {
     talk.onclick = talkToHappyWizard;
     useOrTake.onclick = "";
     invisibilityCloak = true;
-    console.log("invisibilitycloak"+":"+invisibilityCloak);
     actionText.innerHTML= "";
     actionText.textContent = "You recieve INVISIBILITY CLOAK"
 }
 
-/** Function for using INVISIBILITYCLOAK in OUTSIDEDRAGONCASTLE. */
+/** Uses INVISIBILITYCLOAK in OUTSIDEDRAGONCASTLE. */
 function useInvisibilityCloak() {
     north.onclick = "";
     south.onclick = "";
@@ -411,24 +407,32 @@ function useInvisibilityCloak() {
     actionText.innerHTML = "";
     actionText.textContent = "You put on the INVISIBILITY CLOAK and sneak by the ORC";
     setTimeout(loadInsideDragonCastleScene, 2000)
-
 }
 
-/** Function for when you finish the game. */
+//-----ENDINGS-----
+
+/** When you finish the game. */
 function endGame() {
+    north.onclick = "";
+    south.onclick = "";
+    west.onclick = "";
+    east.onclick = "";
+    look.onclick = "";
+    talk.onclick = "";
+    useOrTake.onclick = "";
     text.textContent = "Congratulations! You found the DragonCrystal"
     actionText.textContent = "This is the end of Chapter 1"
 }
 
-/** Function for GAMEOVER */
+/** Shows GAMEOVER-scene */
 function gameOver() {
+    north.onclick = "";
+    south.onclick = "";
+    west.onclick = "";
+    east.onclick = "";
+    look.onclick = "";
+    talk.onclick = "";
+    useOrTake.onclick = "";
     text.textContent = "You died";
     actionText.innerHTML = "";
-    north.onclick = gameOver;
-    south.onclick = gameOver;
-    west.onclick = gameOver;
-    east.onclick = gameOver;
-    look.onclick = gameOver;
-    talk.onclick = gameOver;
-    useOrTake.onclick = gameOver;
 }
