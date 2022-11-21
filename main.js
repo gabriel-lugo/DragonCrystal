@@ -1,26 +1,38 @@
 window.addEventListener('DOMContentLoaded', main);
 
-/** HTML-element som används i programmet */
-let username;
+//-----HTML-ELEMENTS-----
+/** @type{HtmlElement} - Html-Element used for text. */
 let text;
+/** @type{HtmlElement} - Html-Element used for action-text. */
 let actionText;
+/** @type{Button} - Button used for north-navigation. */
 let north;
+/** @type{Button} - Button used for south-navigation. */
 let south;
+/** @type{Button} - Button used for west-navigation. */
 let west;
+/** @type{Button} - Button used for east-navigation. */
 let east;
+/** @type{Button} - Button used for looking around in scenes. */
 let look;
+/** @type{Button} - Button used for talking in the scenes. */
 let talk;
+/** @type{Button} - Button used for using or taking items. */
 let useOrTake;
 
-/** Föremål som används i spelet */
+//-----ITEMS-----
+/** @type{Boolean} - SPELLBOOK-item */
 let spellBook;
+/** @type{Boolean} - INVISIBILITYCLOAK-item */
 let invisibilityCloak;
+/** @type{Boolean} - DRAGONCRYSTAL-item */
 let dragonCrystal;
 
-/** Karaktärer i spelet */
+//-----CHARACTERS-----
+/** @type{Boolean} - WIZARD-character */
 let sadWizard;
 
-/** Startar programmet */
+/** Start of the program. */
 function main() {
     loadHtmlElements();
     loadItems();
@@ -31,7 +43,7 @@ function main() {
     console.log("sad wizard"+":"+sadWizard);
 }
 
-/** Laddar in dom HTML-element som används */
+/** Loading HTML-elements. */
 function loadHtmlElements() {
     text = document.getElementById('world-text');
     actionText = document.getElementById('action-text');
@@ -45,7 +57,7 @@ function loadHtmlElements() {
     inventory = document.getElementById('inventory');
 }
 
-/** Laddar in föremål och karaktärer */
+/** Loading items and characters. */
 function loadItems() {
     spellBook = false;
     invisibilityCloak = false;
@@ -53,9 +65,9 @@ function loadItems() {
     sadWizard = true;
 }
 
-// -----SCENES-----
+// -----THE SCENES-----
 
-/** Startskärmen */
+/** Loads STARTUP-scene. */
 function startup() {
     text.textContent = "Welcome to the world of Imaginaria!";
     actionText.innerHTML = "Press any button";
@@ -64,104 +76,131 @@ function startup() {
     west.onclick = loadFrozenLakeScene;
     east.onclick = loadFrozenLakeScene;
     look.onclick = loadFrozenLakeScene;
+    talk.onclick = loadFrozenLakeScene;
     useOrTake.onclick = loadFrozenLakeScene;
 }
 
-/** FrozenLake-scenen */
+/** Loads FROZENLAKE scene. */
 function loadFrozenLakeScene() {
     text.textContent = "You are standing by a Frozen Lake";
     actionText.innerHTML = "";
     north.onclick = loadSolemnVillageScene;
-    south.onclick = loadFrozenLakeScene;
+    south.onclick = cannotGoSouth;
     west.onclick = loadNarrowPath;
-    east.onclick = loadFrozenLakeScene;
+    east.onclick = cannotGoEast;
     look.onclick = lookingAroundFrozenLake;
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** NarrowPath-scenen */
+/** Loads NARROWPATH scene. */
 function loadNarrowPath() {
     text.textContent = "You are on a Narrow Path";
     actionText.innerHTML = "";
     north.onclick = loadCaveOfMagicScene;
-    south.onclick = loadNarrowPath;
-    west.onclick = loadNarrowPath;
+    south.onclick = cannotGoSouth;
+    west.onclick = cannotGoWest;
     east.onclick = loadFrozenLakeScene;
     look.onclick = lookingAroundNarrowPath;
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** SolemnVillage-scenen */
+/** Loads SOLEMNVILLAGE scene. */
 function loadSolemnVillageScene() {
     text.textContent = "You are in the Solemn Village";
     actionText.innerHTML = "";
     north.onclick = loadEnchantedForestScene;
     south.onclick = loadFrozenLakeScene;
-    west.onclick = loadSolemnVillageScene;
-    east.onclick = loadSolemnVillageScene;
+    west.onclick = cannotGoWest;
+    east.onclick = cannotGoEast;
     look.onclick = lookingAroundSolemnVillage;
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** EnchantedForest-scenen */
+/** Loads NARROWPATH scene. */
 function loadEnchantedForestScene() {
     text.textContent = "You are in the Enchanted Forest";
     actionText.innerHTML = "";
-    north.onclick = loadDragonCastleScene;
+    north.onclick = loadOutsideDragonCastleScene;
     south.onclick = loadSolemnVillageScene;
     west.onclick = loadCaveOfMagicScene;
-    east.onclick = loadEnchantedForestScene;
+    east.onclick = cannotGoEast;
     look.onclick = lookingAroundEnchantedForest
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** CaveOfMagic-scenen */
+/** Loads CAVEOFMAGIC scene. */
 function loadCaveOfMagicScene() {
     text.textContent = "You are in the Cave of Magic";
     actionText.innerHTML = "";
-    north.onclick = loadCaveOfMagicScene;
+    north.onclick = cannotGoNorth;
     south.onclick = loadNarrowPath;
-    west.onclick = loadCaveOfMagicScene;
+    west.onclick = cannotGoWest;
     east.onclick = loadEnchantedForestScene;
     look.onclick = lookingAroundCaveOfMagic;
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** DragonCastle-scenen utanför */
-function loadDragonCastleScene() {
+/** Loads OUTSIDEDRAGONCASTLE scene. */
+function loadOutsideDragonCastleScene() {
     text.textContent = "You are outside the DragonCastle";
     actionText.innerHTML = "";
-    north.onclick = loadDragonCastleScene;
+    north.onclick = cannotGoNorth;
     south.onclick = loadEnchantedForestScene;
-    west.onclick = loadDragonCastleScene;
-    east.onclick = loadDragonCastleScene;
-    look.onclick = lookingAroundDragonCastle;
-    talk.onclick = "";
+    west.onclick = cannotGoWest;
+    east.onclick = cannotGoEast;
+    look.onclick = lookingAroundOutsideDragonCastle;
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
-/** DragonCastle-scenen innanför */
+/** Loads INSIDEDRAGONCASTLE scene. */
 function loadInsideDragonCastleScene() {
     text.textContent = "You are inside the DragonCastle";
     actionText.innerHTML = "";
-    north.onclick = "";
-    south.onclick = "";
-    west.onclick = "";
-    east.onclick = "";
+    north.onclick = cannotGoNorth;
+    south.onclick = cannotGoSouth;
+    west.onclick = cannotGoWest;
+    east.onclick = cannotGoEast;
     look.onclick = lookingAroundInsideDragonCastle;
-    talk.onclick = "";
+    talk.onclick = nobodyToTalkTo;
     useOrTake.onclick = nothingToUse;
 }
 
+// -----DIRECTIONS----
+/** Function used when player cannot go in that direction. */
+function cannotGoNorth() {
+    actionText.innerHTML = "";
+    actionText.textContent = "Cannot go NORTH from here";
+}
+
+/** Function used when player cannot go in that direction. */
+function cannotGoSouth() {
+    actionText.innerHTML = "";
+    actionText.textContent = "Cannot go SOUTH from here";
+}
+
+/** Function used when player cannot go in that direction. */
+function cannotGoWest() {
+    actionText.innerHTML = "";
+    actionText.textContent = "Cannot go WEST from here";
+}
+
+/** Function used when player cannot go in that direction. */
+function cannotGoEast() {
+    actionText.innerHTML = "";
+    actionText.textContent = "Cannot go EAST from here";
+}
 
 // -----LOOKING AROUND-----
 
-/** Look-kommandot i FrozenLake */
+/** Function for looking around FROZENLAKE scene.
+ * You can talk to the WIZARD here.
+ * If you have the SPELLBOOK you can give it to the WIZARD.  */
 function lookingAroundFrozenLake() {
     actionText.innerHTML = "";
 
@@ -182,46 +221,51 @@ function lookingAroundFrozenLake() {
     }
 }
 
-/** Look-kommandot i NarrowPath */
+/** Function for looking around NARROWPATH scene. */
 function lookingAroundNarrowPath() {
     actionText.innerHTML = "";
     actionText.textContent = "This is a dark and dangerous path"
-    talk.onclick = "";
-    useOrTake.onclick = "";
+    talk.onclick = nobodyToTalkTo;
+    useOrTake.onclick = nothingToUse;
 }
 
-/** Look-kommandot i SolemnVillage */
+/** Function for looking around SOLEMNVILLAGE scene.
+ * You can talk to the BLACKSMITH here.
+ */
 function lookingAroundSolemnVillage() {
     actionText.innerHTML = "";
     actionText.textContent = "There is a BLACKSMITH here";
     talk.onclick = talkToBlacksmith;
-    useOrTake.onclick = "";
-}
-
-/** Look-kommandot i EnchantedForest */
-function lookingAroundEnchantedForest() {
-    actionText.innerHTML = "";
-    actionText.textContent = "There are some birds in the trees"
-    talk.onclick = "";
     useOrTake.onclick = nothingToUse;
 }
 
-/** Look-kommandot i CaveOfMagic */
+/** Function for looking around ENCHANTEDFOREST scene. */
+function lookingAroundEnchantedForest() {
+    actionText.innerHTML = "";
+    actionText.textContent = "There are some birds in the trees"
+    talk.onclick = nobodyToTalkTo;
+    useOrTake.onclick = nothingToUse;
+}
+
+/** Function for looking around CAVEOFMAGIC scene.
+ * You can pick up the SPELLBOOK here. */
 function lookingAroundCaveOfMagic() {
     actionText.innerHTML = "";
 
     if(spellBook == false) {
         actionText.textContent = "There is a book on the ground";
-        talk.onclick = "";
-        useOrTake.onclick = pickUpMagicBook;
+        talk.onclick = nobodyToTalkTo;
+        useOrTake.onclick = pickUpSpellBook;
     } else {
         actionText.textContent = "There is nothing here";
-        useOrTake.onclick = "";
+        useOrTake.onclick = nothingToUse;
     }
 }
 
-/** Look-kommandot utanför DragonCastle */
-function lookingAroundDragonCastle() {
+/** Function for looking around OUTSIDEDRAGONCASTLE scene. 
+ * You can talk to the ORC.
+ * If you have the INVISIBILITYCLOAK you can use that here. */
+function lookingAroundOutsideDragonCastle() {
     actionText.innerHTML = "";
     actionText.textContent = "There is an ORC guarding the entrance";
     talk.onclick = talkToOrc;
@@ -233,7 +277,9 @@ function lookingAroundDragonCastle() {
     }
 }
 
-/** Look-kommandot i DragonCastle */
+/** Function for looking around INSIDEDRAGONCASTLE scene.
+ * You can pick up the DRAGONCRYSTAL here.
+ */
 function lookingAroundInsideDragonCastle() {
     actionText.innerHTML = "";
     actionText.textContent = "The DRAGONCRYSTAL is glowing bright";
@@ -242,6 +288,16 @@ function lookingAroundInsideDragonCastle() {
 
 // -----TALK-----
 
+/** Function for when there is nobody to talk to. */
+function nobodyToTalkTo() {
+    actionText.innerHTML = "";
+    actionText.textContent = "Nobody to talk to"
+
+}
+
+/** First conversation with the WIZARD at FROZENLAKE. 
+ * If you have the SPELLBOOK you can give it to him.
+*/
 function talkToWizard() {
     actionText.innerHTML = "";
 
@@ -250,10 +306,13 @@ function talkToWizard() {
         useOrTake.onclick = giveSpellBookToWizard;
     } else {
         actionText.textContent = "WIZARD: I have lost my SPELL BOOK...";
-        useOrTake.onclick = "";
+        useOrTake.onclick = nothingToUse;
     }
 }
 
+/** Conversation with WIZARD when you give him the SPELLBOOK.
+ * WIZARD is no longer sad.
+ */
 function talkToWizardAgain() {
     actionText.textContent = "WIZARD: Thank you for finding my SPELL BOOK! Please take this INVISIBILITY CLOAK!";
     sadWizard = false;
@@ -261,18 +320,22 @@ function talkToWizardAgain() {
     setTimeout(getInvisibilityCloak, 3500);
 }
 
+/** Conversation with WIZARD after you have given him the SPELLBOOK. */
 function talkToHappyWizard() {
     actionText.innerHTML = "";
     actionText.textContent = "WIZARD: Good luck on your quest!";
-    useOrTake.onclick = "";
+    useOrTake.onclick = nothingToUse;
 }
 
+/** Conversation with BLACKSMITH in SOLEMNVILLAGE. */
 function talkToBlacksmith() {
     actionText.innerHTML = "";
-    actionText.textContent = "BLACKSMITH: I can make something of something else! Else if...";
-    useOrTake.onclick = "";
+    actionText.textContent = "BLACKSMITH: I can make something from something else!";
+    useOrTake.onclick = nothingToUse;
 }
 
+/** Conversation with ORC at OUTSIDEDRAGONCASTLE.
+ * This leads to GAMEOVER scene.*/
 function talkToOrc() {
     actionText.innerHTML = "";
     actionText.textContent = "ORC: Za kul the dautus lat mat!";
@@ -283,19 +346,21 @@ function talkToOrc() {
     look.onclick = gameOver;
     talk.onclick = gameOver;
     useOrTake.onclick = gameOver;
-    setTimeout(gameOver, 2000);
+    setTimeout(gameOver, 1500);
 }
 
 
 // -----USE/TAKE-----
+/** Function for when there is nothing to use in the scene. */
 function nothingToUse() {
     actionText.innerHTML = "";
-    actionText.textContent = "Nothing to use here"
+    actionText.textContent = "Nothing to use"
     useOrTake.onclick = "";
 
 }
 
-function pickUpMagicBook() {
+/** Function for picking up SPELLBOOK in CAVEOFMAGIC scene. */
+function pickUpSpellBook() {
     actionText.innerHTML = "";
     actionText.textContent = "You picked up the SPELL BOOK";
     spellBook = true;
@@ -303,6 +368,7 @@ function pickUpMagicBook() {
    
 }
 
+/** Function for giving SPELLBOOK to WIZARD. */
 function giveSpellBookToWizard() {
     north.onclick = "";
     south.onclick = "";
@@ -317,6 +383,7 @@ function giveSpellBookToWizard() {
     useOrTake.onclick = "";
 }
 
+/** Function for getting INVISIBILITYCLOAK from WIZARD. */
 function getInvisibilityCloak() {
     north.onclick = loadSolemnVillageScene;
     south.onclick = loadFrozenLakeScene;
@@ -331,6 +398,7 @@ function getInvisibilityCloak() {
     actionText.textContent = "You recieve INVISIBILITY CLOAK"
 }
 
+/** Function for using INVISIBILITYCLOAK in OUTSIDEDRAGONCASTLE. */
 function useInvisibilityCloak() {
     north.onclick = "";
     south.onclick = "";
@@ -346,11 +414,13 @@ function useInvisibilityCloak() {
 
 }
 
+/** Function for when you finish the game. */
 function endGame() {
     text.textContent = "Congratulations! You found the DragonCrystal"
     actionText.textContent = "This is the end of Chapter 1"
 }
 
+/** Function for GAMEOVER */
 function gameOver() {
     text.textContent = "You died";
     actionText.innerHTML = "";
