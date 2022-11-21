@@ -173,6 +173,7 @@ function loadInsideDragonCastleScene() {
 }
 
 // -----DIRECTIONS----
+
 /** Used when player cannot go north. */
 function cannotGoNorth() {
     actionText.innerHTML = "";
@@ -347,7 +348,6 @@ function talkToOrc() {
     useOrTake.onclick = gameOver;
     setTimeout(gameOver, 1500);
 }
-
 
 // -----USE/TAKE-----
 
